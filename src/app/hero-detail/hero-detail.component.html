@@ -1,0 +1,25 @@
+<div class="container mt-3">
+  <div class="row justify-content-center">
+    <div *ngIf="hero" class="col-lg-8">
+      <h3>
+        {{hero.name}} |
+        <span>
+          <strong>ID: </strong>
+          {{hero.id}}
+        </span>
+        <button class="btn btn-sm btn-primary ml-2" (click)="goBack()">
+          Back
+        </button>
+      </h3>
+
+      <label for="">Name</label>
+      <div class="form-group">
+        <input type="text" [(ngModel)]="hero.name" class="form-control" [disabled]='edit'>
+        <button class="btn btn-sm btn-primary mt-2" (click)="toggleEditMode()">
+          {{edit ? 'Edit' : 'Save'}}
+          <span class="fas fa-pen"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
