@@ -5,21 +5,27 @@
         {{hero.name}} |
         <span>
           <strong>ID: </strong>
-          {{hero.id}}
+          {{hero._id}}
         </span>
         <button class="btn btn-sm btn-primary ml-2" (click)="goBack()">
           Back
         </button>
       </h3>
 
-      <label for="">Name</label>
       <div class="form-group">
+        <label for="">Name</label>
         <input type="text" [(ngModel)]="hero.name" class="form-control" [disabled]='edit'>
-        <button class="btn btn-sm btn-primary mt-2" (click)="toggleEditMode()">
-          {{edit ? 'Edit' : 'Save'}}
-          <span class="fas fa-pen"></span>
-        </button>
       </div>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <button class="btn btn-sm btn-primary mr-2" [class.btn-secondary]="!edit" (click)="toggleEditMode()">
+        {{edit ? 'Edit' : 'Cancel'}}
+        <span class="fas fa-pen"></span>
+      </button>
+      <button *ngIf="!edit" class="btn btn-sm btn-success mr-2" (click)="updateHero(hero)">Save</button>
+      <button class="btn btn-sm btn-danger" (click)="deleteHero(hero._id)">Delete</button>
     </div>
   </div>
 </div>
