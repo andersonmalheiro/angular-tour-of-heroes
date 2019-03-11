@@ -1,0 +1,11 @@
+<div class="container mt-3">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="form-group">
+        <label>Name</label>
+        <input #heroName type="text" class="form-control">
+      </div>
+      <button class="btn btn-sm btn-primary" (click)="addHero(heroName.value)">Add</button>
+    </div>
+  </div>
+</div>

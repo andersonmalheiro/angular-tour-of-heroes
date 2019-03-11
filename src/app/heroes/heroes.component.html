@@ -3,12 +3,40 @@
     <div class="col-lg-8 col-md-8 col-8">
       <h2 class="text-center">My heroes</h2>
       <ul class="list-group">
-        <a routerLink="/detail/{{hero.id}}" class="nav-link" *ngFor="let hero of heroes">
-          <li class="list-group-item list-group-item-action" [class.active]="hero === selectedHero">
-            {{hero.name}}
-            <span class="float-right badge badge-pill badge-light my-auto mr-2">{{hero.id}}</span>
-          </li>
-        </a>
+        <li class="list-group-item list-group-item-action m-2" *ngFor="let hero of heroes">
+          <div class="row justify-content-center align-items-center">
+            <div class="col-lg-10 col-md-10 col-6">
+              <a routerLink="/detail/{{hero._id}}" class="nav-link">
+                {{hero.name}}
+              </a>
+            </div>
+            <!-- Likes -->
+            <div class="col-lg-1 col-md-1 col-1">
+              <div class="row text-center justify-content-center">
+                <span class="badge badge-pill badge-light my-auto">{{hero.likes}}</span>
+              </div>
+              <div class="row justify-content-center mt-2">
+                <a href="">
+                  <span class="fas fa-thumbs-up"></span>
+                </a>
+              </div>
+            </div>
+            <!-- ./Likes -->
+
+            <!-- Dislikes -->
+            <div class="col-lg-1 col-md-1 col-1">
+              <div class="row text-center justify-content-center">
+                <span class="badge badge-pill badge-light my-auto">{{hero.dislikes}}</span>
+              </div>
+              <div class="row justify-content-center mt-2">
+                <a href="">
+                  <span class="fas fa-thumbs-down"></span>
+                </a>
+              </div>
+            </div>
+            <!-- ./Dislikes -->
+          </div>
+        </li>
       </ul>
     </div>
   </div>

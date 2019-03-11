@@ -3,7 +3,7 @@
     Top Heroes
   </h2>
   <div class="row justify-content-center">
-    <a routerLink="/detail/{{hero.id}}" class="col-lg-4 card m-1 bg-primary text-white nav-link" *ngFor="let hero of heroes">
+    <a routerLink="/detail/{{hero._id}}" class="col-lg-4 card m-1 bg-primary text-white nav-link" *ngFor="let hero of heroes">
       <div class="card-body text-center">
         <h4>{{hero.name}}</h4>
       </div>
