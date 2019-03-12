@@ -4,7 +4,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { Observable, of } from "rxjs";
 import { MessageService } from "./message.service";
 
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 
 @Injectable({
   providedIn: "root"
@@ -12,6 +12,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 export class HeroService {
 
   private heroUrl = 'http://localhost:8080/heroes/'; 
+  private likeUrl = 'http://localhost:8080/likes/'; 
 
   getHeroes(): Observable<Hero[]> {
     this.messageService.add("HeroService: fetched heroes");
@@ -29,8 +30,8 @@ export class HeroService {
     );
   }
 
-  addHero(name: string): Observable<Hero> {
-    return this.http.post<Hero>(this.heroUrl, {name}).pipe(
+  addHero(hero: Hero): Observable<Hero> {
+    return this.http.post<Hero>(this.heroUrl, hero).pipe(
       tap(_ => this.log('hero added')),
       catchError(this.handleError<Hero>('addHero'))
     )
@@ -40,10 +41,17 @@ export class HeroService {
     return this.http.delete<Hero>(this.heroUrl + id);
   }
 
-  updateHero(hero: Hero): Observable<Hero> {
-    return this.http.put<Hero>(this.heroUrl + hero._id, hero).pipe(
+  updateHero(id: string, payload: Object): Observable<Hero> {
+    return this.http.put<Hero>(this.heroUrl + id, payload).pipe(
       tap(_ => this.log(`hero updated`)),
       catchError(this.handleError<Hero>('update hero'))
+    );
+  }
+
+  likeHero(id: string): Observable<Hero>{
+    return this.http.post<Hero>(this.likeUrl + id, {}).pipe(
+      tap(_ => this.log('liked')),
+      catchError(this.handleError<Hero>('like hero'))
     );
   }
 
