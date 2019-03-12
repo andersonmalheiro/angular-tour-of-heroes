@@ -28,10 +28,8 @@ module.exports = {
 
     async update(req, res) {
         console.log("PUT /heroes");
-        let hero = await Hero.findById(req.params.id);
-        hero.set(req.body);
-        await hero.save();
-        return res.status(200).send({hero});
+        let hero = await Hero.findByIdAndUpdate(req.params.id, req.body);
+        return res.status(200).send(hero);
     },
 
     async delete(req, res){
